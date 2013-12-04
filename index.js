@@ -1,11 +1,10 @@
 var spawn = require('child_process').spawn;
 
-hexo.extend.renderer.register('md', 'html', function(data, options, callback) {
-
+var pandoc = function(data, options, callback){
 	var args = [ '-f', 'markdown', '-t', 'html', '--mathjax', '--smart'];
 	
 	var src = data.text.toString();
-		
+	
 	var pandoc = spawn('pandoc', args);
 
 	var result = '';
@@ -14,11 +13,11 @@ hexo.extend.renderer.register('md', 'html', function(data, options, callback) {
 	pandoc.stdout.setEncoding('utf8');
 	
 	pandoc.stdout.on('data', function (data) {
-		result += data.toString();
+		result += data;
 	});
 
 	pandoc.stderr.on('data', function (data) {
-		error += data.toString();
+		error += data();
 	});
 
 	pandoc.stdin.write(src, 'utf8');
@@ -32,10 +31,18 @@ hexo.extend.renderer.register('md', 'html', function(data, options, callback) {
 		if (msg)
 			return callback(new Error(msg));
 		else{
+			if (result === '') console.log("The next file error: ");
 			callback(null, result);
 		}
 	});
 	
     pandoc.stdin.end();
+}
 
-});
+hexo.extend.renderer.register('md', 'html', pandoc);
+hexo.extend.renderer.register('markdown', 'html', pandoc);
+hexo.extend.renderer.register('mkd', 'html', pandoc);
+hexo.extend.renderer.register('mkdn', 'html', pandoc);
+hexo.extend.renderer.register('mdwn', 'html', pandoc);
+hexo.extend.renderer.register('mdtxt', 'html', pandoc);
+hexo.extend.renderer.register('mdtext', 'html', pandoc);

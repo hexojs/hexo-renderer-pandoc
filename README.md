@@ -1,8 +1,33 @@
 hexo-renderer-pandoc
 
-Yet another markdown renderer plugin for [Hexo](http://zespia.tw/hexo). It can converts [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML(or other [formats](http://johnmacfarlane.net/pandoc/index.html) as you like).
+Yet another markdown renderer plugin for [Hexo](http://zespia.tw/hexo). It can converts [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML. If you want, it can also be a renderer of [textile](http://redcloth.org/textile), [reStructedText](http://docutils.sourceforge.net/rst.html), *etc*. by modify some arguments.
 
-Before using this, please make sure you have installed pandoc.
+## Installation ##
+
+1. Firstly, make sure you have [installed](http://johnmacfarlane.net/pandoc/installing.html) pandoc.
+2. Secondly, `cd` into your hexo root folder and execute the following command:
+
+``` bash
+$ npm install hexo-renderer-pandoc --save
+```
+
+This will install hexo-renderer-pandoc.
+
+## Customization ##
+
+hexo-renderer-pandoc can not only render markdown, but also supports textile, reStructedText and many other formats, due to the strong capability of pandoc.
+
+By default, it only renders Pandoc-markdown. But if you want to make it be a textile renderer instead of a markdown renderer, simply modify the args from the index.js as:
+
+``` javascript
+var args = [ '-f', 'textile', '-t', 'html', '--mathjax', '--smart'];
+```
+
+and change the register line as:
+
+``` javascript
+hexo.extend.renderer.register('md', 'html', pandoc);
+```
 
 ## Credits ##
 

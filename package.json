@@ -1,21 +1,29 @@
 {
-	"name": "hexo-renderer-pandoc",
-	"version": "0.0.4",
-	"main": "index",
-	"author": "Joseph Pan <cs.wzpan@gmail.com> (http://hahack.com/)",
-	"tags": [
-		"pandoc",
-		"markdown",
-		"hexo"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/wzpan/hexo-renderer-pandoc.git"
-	},
-	"bugs": {
-		"url": "http://github.com/wzpan/hexo-renderer-pandoc/issues"
-	},
-	"dependencies": {
-		
-	}
-} 
+  "name": "hexo-renderer-pandoc",
+  "version": "0.0.4",
+  "main": "index",
+  "author": {
+    "name": "Joseph Pan",
+    "email": "cs.wzpan@gmail.com",
+    "url": "http://hahack.com/"
+  },
+  "tags": [
+    "pandoc",
+    "markdown",
+    "hexo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wzpan/hexo-renderer-pandoc.git"
+  },
+  "bugs": {
+    "url": "http://github.com/wzpan/hexo-renderer-pandoc/issues"
+  },
+  "dependencies": {},
+  "readme": "hexo-renderer-pandoc\n\nYet another markdown renderer plugin for [Hexo](http://zespia.tw/hexo). It can converts [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML(or other [formats](http://johnmacfarlane.net/pandoc/index.html) as you like).\n\nBefore using this, please make sure you have installed pandoc.\n\n## Credits ##\n\nI'd like to thank [John MacFarlane](http://johnmacfarlane.net/) for creating Pandoc and [John Gruber](http://daringfireball.net/) for developing Markdown. Also, this work is based on @pvorb ([Paul Vorbach](https://github.com/pvorb/)) 's [node-pdc](https://github.com/pvorb/node-pdc) wrapper for pandoc.\n",
+  "readmeFilename": "README.md",
+  "description": "hexo-renderer-pandoc",
+  "homepage": "https://github.com/wzpan/hexo-renderer-pandoc",
+  "_id": "hexo-renderer-pandoc@0.0.3",
+  "_from": "hexo-renderer-pandoc@"
+}
