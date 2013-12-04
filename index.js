@@ -32,7 +32,6 @@ hexo.extend.renderer.register('md', 'html', function(data, options, callback) {
 		if (msg)
 			return callback(new Error(msg));
 		else{
-			if (result === '') console.log("The next file error: ");
 			callback(null, result);
 		}
 	});

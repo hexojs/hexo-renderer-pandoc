@@ -1,6 +1,6 @@
 {
 	"name": "hexo-renderer-pandoc",
-	"version": "0.0.2",
+	"version": "0.0.4",
 	"main": "index",
 	"author": "Joseph Pan <cs.wzpan@gmail.com> (http://hahack.com/)",
 	"tags": [
