@@ -1,6 +1,6 @@
 hexo-renderer-pandoc
 
-Yet another markdown renderer plugin for [Hexo](http://zespia.tw/hexo). It can converts [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML. If you want, it can also be a renderer of [textile](http://redcloth.org/textile), [reStructedText](http://docutils.sourceforge.net/rst.html), *etc*. by modify some arguments.
+Yet another markdown renderer plugin for [Hexo](http://zespia.tw/hexo). It can converts [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML. If you want, it can also be a renderer for [textile](http://redcloth.org/textile), [reStructedText](http://docutils.sourceforge.net/rst.html), *etc*. 
 
 ## Installation ##
 

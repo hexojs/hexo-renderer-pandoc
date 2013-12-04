@@ -1,6 +1,6 @@
 {
   "name": "hexo-renderer-pandoc",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "index",
   "author": {
     "name": "Joseph Pan",
@@ -20,6 +20,9 @@
     "url": "http://github.com/wzpan/hexo-renderer-pandoc/issues"
   },
   "dependencies": {},
-  "description": "Yet another markdown renderer for hexo",
-  "homepage": "https://github.com/wzpan/hexo-renderer-pandoc"
+  "readmeFilename": "README.md",
+  "description": "hexo-renderer-pandoc",
+  "homepage": "https://github.com/wzpan/hexo-renderer-pandoc",
+  "_id": "hexo-renderer-pandoc@0.0.6",
+  "_from": "hexo-renderer-pandoc@"
 }
