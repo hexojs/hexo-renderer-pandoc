@@ -1,7 +1,20 @@
 {
 	"name": "hexo-renderer-pandoc",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"main": "index",
+	"author": "Joseph Pan <cs.wzpan@gmail.com> (http://hahack.com/)",
+	"tags": [
+		"pandoc",
+		"markdown",
+		"hexo"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/wzpan/hexo-renderer-pandoc.git"
+	},
+	"bugs": {
+		"url": "http://github.com/wzpan/hexo-renderer-pandoc/issues"
+	},
 	"dependencies": {
 		
 	}
