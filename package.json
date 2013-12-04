@@ -1,0 +1,8 @@
+{
+	"name": "hexo-renderer-pandoc",
+	"version": "0.0.1",
+	"main": "index",
+	"dependencies": {
+		
+	}
+} 
