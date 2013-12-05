@@ -26,7 +26,7 @@ var args = [ '-f', 'textile', '-t', 'html', '--mathjax', '--smart'];
 and change the register line as:
 
 ``` javascript
-hexo.extend.renderer.register('md', 'html', pandoc);
+hexo.extend.renderer.register('textile', 'html', pandoc);
 ```
 
 ## Credits ##
