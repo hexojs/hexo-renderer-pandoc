@@ -1,6 +1,6 @@
 {
   "name": "hexo-renderer-pandoc",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "index",
   "author": {
     "name": "Joseph Pan",
@@ -23,6 +23,6 @@
   "readmeFilename": "README.md",
   "description": "hexo-renderer-pandoc",
   "homepage": "https://github.com/wzpan/hexo-renderer-pandoc",
-  "_id": "hexo-renderer-pandoc@0.0.8",
+  "_id": "hexo-renderer-pandoc@0.0.9",
   "_from": "hexo-renderer-pandoc@"
 }
