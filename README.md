@@ -29,6 +29,33 @@ and change the register line as:
 hexo.extend.renderer.register('textile', 'html', pandoc);
 ```
 
+You can pass additional arguments to pandoc through `_config.yml`. The default configuration is:
+
+```yml
+pandoc:
+  filters:
+  extra:
+```
+
+`filters` is a list of any pandoc filter installed on your path.
+`extra` is a list of mappings:
+
+```yml
+extra:
+  - key: value
+```
+passed to pandoc as `--key value`.
+
+`pandoc-citeproc` for example can be configured as:
+
+```yml
+pandoc:
+  filters:
+    - pandoc-citeproc
+  extra:
+    bibliography: "/path/to/bibfile.bib"
+```
+
 ## Credits ##
 
 I'd like to thank [John MacFarlane](http://johnmacfarlane.net/) for creating Pandoc and [John Gruber](http://daringfireball.net/) for developing Markdown. Also, this work is based on @pvorb ([Paul Vorbach](https://github.com/pvorb/)) 's [node-pdc](https://github.com/pvorb/node-pdc) wrapper for pandoc.

@@ -1,8 +1,28 @@
 var spawn = require('child_process').spawn;
 
 var pandocRenderer = function(data, options, callback){
+  var config = hexo.config.pandoc;
+  var filters = [], extra = [];
 
-	var args = [ '-f', 'markdown', '-t', 'html', '--mathjax', '--smart'];
+  if(config) {
+    if(config.filters) {
+      config.filters.forEach(function(filter) {
+        filters.push('--filter');
+        filters.push(filter);
+      });
+    }
+
+    if(config.extra) {
+      for(var e in config.extra) {
+        extra.push('--' + e);
+        extra.push(config.extra[e]);
+      }
+    }
+  }
+
+	var args = [ '-f', 'markdown', '-t', 'html', '--mathjax', '--smart']
+  .concat(filters)
+  .concat(extra);
 	
 	var src = data.text.toString();
 	
