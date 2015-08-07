@@ -35,6 +35,7 @@ You can pass additional arguments to pandoc through `_config.yml`. The default c
 pandoc:
   filters:
   extra:
+  meta:
 ```
 
 `filters` is a list of any pandoc filter installed on your path.
@@ -46,6 +47,15 @@ extra:
 ```
 passed to pandoc as `--key value`.
 
+`meta` is a list of anything you wish to be sent to pandoc as meta:
+
+```yml
+meta:
+  - key: value1
+  - value2
+```
+would be passed as `-M key=value1 -M value2`.
+
 `pandoc-citeproc` for example can be configured as:
 
 ```yml
@@ -54,6 +64,8 @@ pandoc:
     - pandoc-citeproc
   extra:
     bibliography: "/path/to/bibfile.bib"
+  meta:
+    - suppress-bibliography
 ```
 
 ## Credits ##

@@ -2,7 +2,7 @@ var spawn = require('child_process').spawn;
 
 var pandocRenderer = function(data, options, callback){
   var config = hexo.config.pandoc;
-  var filters = [], extra = [];
+  var filters = [], extra = [], meta = [];
 
   if(config) {
     if(config.filters) {
@@ -18,11 +18,25 @@ var pandocRenderer = function(data, options, callback){
         extra.push(config.extra[e]);
       }
     }
+
+    if(config.meta) {
+      config.meta.forEach(function(m) {
+        meta.push('-M');
+        if(m.length) {
+          meta.push(m);
+        } else {
+          for(var m2 in m) {
+            meta.push(m2 + '=' + m[m2]);
+          }
+        }
+      });
+    }
   }
 
 	var args = [ '-f', 'markdown', '-t', 'html', '--mathjax', '--smart']
   .concat(filters)
-  .concat(extra);
+  .concat(extra)
+  .concat(meta);
 	
 	var src = data.text.toString();
 	
