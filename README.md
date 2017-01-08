@@ -36,10 +36,11 @@ pandoc:
   filters:
   extra:
   meta:
+  mathEngine:
 ```
 
-`filters` is a list of any pandoc filter installed on your path.
-`extra` is a list of mappings:
+* `filters` is a list of any pandoc filter installed on your path.
+* `extra` is a list of mappings:
 
 ```yml
 extra:
@@ -47,7 +48,7 @@ extra:
 ```
 passed to pandoc as `--key value`.
 
-`meta` is a list of anything you wish to be sent to pandoc as meta:
+* `meta` is a list of anything you wish to be sent to pandoc as meta:
 
 ```yml
 meta:
@@ -68,6 +69,19 @@ pandoc:
     - suppress-bibliography
 ```
 
+* `mathEngine` is an option for choosing math engine. By default, mathEngine is mathjax.
+
+For example, if you want to use KaTeX, you can pass `katex` to the mathEngine option:
+
+```
+pandoc:
+  mathEngine: katex
+```
+
+Then, the args of pandoc is this: `[..., "--katex", ...]` .
+
 ## Credits ##
 
 I'd like to thank [John MacFarlane](http://johnmacfarlane.net/) for creating Pandoc and [John Gruber](http://daringfireball.net/) for developing Markdown. Also, this work is based on @pvorb ([Paul Vorbach](https://github.com/pvorb/)) 's [node-pdc](https://github.com/pvorb/node-pdc) wrapper for pandoc.
+
+
