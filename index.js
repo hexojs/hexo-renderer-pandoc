@@ -2,7 +2,7 @@ var spawn = require('child_process').spawn;
 
 var pandocRenderer = function(data, options, callback){
   var config = hexo.config.pandoc;
-  var filters = [], extra = [], meta = [];
+  var filters = [], extra = [], meta = [], math = '--mathjax';
 
   if(config) {
     if(config.filters) {
@@ -31,22 +31,28 @@ var pandocRenderer = function(data, options, callback){
         }
       });
     }
+
+    if(config.mathEngine) {
+      if(typeof config.mathEngine === 'string') {
+        math = '--' + config.mathEngine;
+      }
+    }
   }
 
-	var args = [ '-f', 'markdown', '-t', 'html', '--mathjax', '--smart']
+	var args = [ '-f', 'markdown', '-t', 'html', math, '--smart']
   .concat(filters)
   .concat(extra)
   .concat(meta);
-	
+
 	var src = data.text.toString();
-	
+
 	var pandoc = spawn('pandoc', args);
 
 	var result = '';
 	var error = '';
 
 	pandoc.stdout.setEncoding('utf8');
-	
+
 	pandoc.stdout.on('data', function (data) {
 		result += data.toString();
 	});
@@ -70,7 +76,7 @@ var pandocRenderer = function(data, options, callback){
 			callback(null, result);
 		}
 	});
-	
+
     pandoc.stdin.end();
 
 }
