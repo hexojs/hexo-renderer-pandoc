@@ -1,5 +1,6 @@
 hexo-renderer-pandoc
 
+[![npm](https://img.shields.io/npm/v/hexo-renderer-pandoc.svg)](https://www.npmjs.com/package/hexo-renderer-pandoc)
 [![npm](https://img.shields.io/npm/dm/hexo-renderer-pandoc.svg)](http://github.com/wzpan/hexo-renerer-pandoc)
 
 Yet another markdown renderer plugin for [Hexo](http://zespia.tw/hexo). It can converts [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML. If you want, it can also be a renderer for [textile](http://redcloth.org/textile), [reStructedText](http://docutils.sourceforge.net/rst.html), *etc*. 
