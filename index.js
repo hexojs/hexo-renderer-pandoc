@@ -14,8 +14,11 @@ var pandocRenderer = function(data, options, callback){
 
     if(config.extra) {
       for(var e in config.extra) {
-        extra.push('--' + e);
-        extra.push(config.extra[e]);
+	var eoption = config.extra[e];
+        for (var key in eoption){
+          extra.push('--' + key);
+	  //extra.push(eoption[key]); 
+	}
       }
     }
 
