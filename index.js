@@ -42,7 +42,7 @@ var pandocRenderer = function(data, options, callback){
     }
   }
 
-	var args = [ '-f', 'markdown', '-t', 'html', math, '--smart']
+	var args = [ '-f', 'markdown+smart', '-t', 'html', math]
   .concat(filters)
   .concat(extra)
   .concat(meta);
