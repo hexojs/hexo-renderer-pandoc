@@ -46,6 +46,8 @@ var pandocRenderer = function(data, options, callback){
   .concat(filters)
   .concat(extra)
   .concat(meta);
+	
+  if(config.template) args.push("--template=" + config.template);
 
 	var src = data.text.toString();
 
