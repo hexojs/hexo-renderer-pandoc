@@ -2,9 +2,15 @@ var spawn = require('child_process').spawn;
 
 var pandocRenderer = function(data, options, callback){
   var config = hexo.config.pandoc;
-  var filters = [], extra = [], meta = [], math = '--mathjax';
+  var extensions = '', filters = [], extra = [], meta = [], math = '--mathjax';
 
   if(config) {
+    if(config.extensions) {
+      config.extensions.forEach(function(extension) {
+        extensions += extension;
+      });
+    }
+	  
     if(config.filters) {
       config.filters.forEach(function(filter) {
         filters.push('--filter');
@@ -42,7 +48,7 @@ var pandocRenderer = function(data, options, callback){
     }
   }
 
-  var args = [ '-f', 'markdown', '-t', 'html', math]
+  var args = [ '-f', 'markdown'+extensions, '-t', 'html', math]
   .concat(filters)
   .concat(extra)
   .concat(meta);
