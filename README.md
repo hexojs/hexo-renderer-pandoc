@@ -38,6 +38,7 @@ You can pass additional arguments to pandoc through `_config.yml`. The default c
 pandoc:
   filters:
   extra:
+  template:
   meta:
   mathEngine:
 ```
@@ -50,6 +51,37 @@ extra:
   - key: value
 ```
 passed to pandoc as `--key value`.
+
+* `template` is a template file you wish to use when pandoc generates your posts:
+
+``` yml
+template: dir/.../template.html
+```
+
+will be passed to pandoc as `--template=dir/../template.html`
+
+The path of the template should be relative to the root of your blog.
+
+For example, the very simple template
+
+``` html
+$if(toc)$
+<div id="$idprefix$TOC">
+$toc$
+</div>
+$endif$
+$body$
+```
+
+prepends table of contents to all your posts if variable `--toc` is also passed. To enable TOC, add to your `_config.yml`:
+
+``` yml
+pandoc:
+  # other options
+  extra:
+    - toc: # will be passed as `--toc`. Note the colon
+  template: dir/../template.html
+```
 
 * `meta` is a list of anything you wish to be sent to pandoc as meta:
 
