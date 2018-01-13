@@ -53,7 +53,7 @@ var pandocRenderer = function(data, options, callback){
   .concat(extra)
   .concat(meta);
 	
-  if(config.template) args.push("--template=" + config.template);
+  if(config && config.template) args.push("--template=" + config.template);
 
 	var src = data.text.toString();
 
