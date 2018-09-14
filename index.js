@@ -20,11 +20,11 @@ var pandocRenderer = function(data, options, callback){
 
     if(config.extra) {
       for(var e in config.extra) {
-	var eoption = config.extra[e];
+	    var eoption = config.extra[e];
         for (var key in eoption){
           extra.push('--' + key);
-	  //extra.push(eoption[key]); 
-	}
+	        extra.push(eoption[key]); 
+	      }
       }
     }
 
