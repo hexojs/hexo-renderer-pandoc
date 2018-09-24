@@ -92,7 +92,8 @@ var pandocRenderer = function(data, options, callback){
 
 }
 
-pandocRenderer.disableNunjucks = true;
+// uncomment this if using nunjucks 
+// pandocRenderer.disableNunjucks = true;
 
 hexo.extend.renderer.register('md', 'html', pandocRenderer);
 hexo.extend.renderer.register('markdown', 'html', pandocRenderer);

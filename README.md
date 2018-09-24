@@ -7,7 +7,7 @@ Yet another markdown renderer plugin for [Hexo](http://zespia.tw/hexo). It can c
 
 ## Installation ##
 
-1. Firstly, make sure you have [installed](http://johnmacfarlane.net/pandoc/installing.html) pandoc.
+1. Firstly, make sure you have [installed](http://johnmacfarlane.net/pandoc/installing.html) pandoc (version >= 2.0).
 2. Secondly, `cd` into your hexo root folder and execute the following command:
 
 ``` bash
