@@ -78,6 +78,11 @@ var pandocRenderer = function(data, options, callback){
 		var msg = '';
 		if (code !== 0)
 			msg += 'pandoc exited with code '+code+(error ? ': ' : '.');
+		// remove this harmless warning message
+		// to prevent program from crashing
+		error = error.replace(
+			"[WARNING] This document format requires a nonempty <title> element.\r\n  Please specify either 'title' or 'pagetitle' in the metadata.\r\n  Falling back to 'Untitled'\r\n"
+		,'');
 		if (error)
 			msg += error;
 		if (msg)
