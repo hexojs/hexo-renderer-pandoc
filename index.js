@@ -23,8 +23,10 @@ var pandocRenderer = function(data, options, callback){
 	    var eoption = config.extra[e];
         for (var key in eoption){
           extra.push('--' + key);
-	        extra.push(eoption[key]); 
-	      }
+          if(eoption[key]!=null) {
+            extra.push(eoption[key]); 
+          }
+	}
       }
     }
 
