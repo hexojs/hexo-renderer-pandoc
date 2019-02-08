@@ -2,7 +2,12 @@ var spawn = require('child_process').spawn;
 
 var pandocRenderer = function(data, options, callback){
   var config = hexo.config.pandoc;
-  var extensions = '', filters = [], extra = [], meta = [], math = '--mathjax';
+  var extensions = '', filters = [], extra = [];
+  // To satisfy pandoc's requirement that html5 must have a title.
+  // Since the markdown file is only rendered as body part,
+  // the title is never used and thus does not matter
+  var meta = ['-M', 'pagetitle=dummy'];
+  var math = '--mathjax';
 
   if(config) {
     if(config.extensions) {
@@ -70,6 +75,7 @@ var pandocRenderer = function(data, options, callback){
     result += data.toString();
   });
 
+  // stderr reads both warnings and errors
   pandoc.stderr.on('data', function (data) {
     error += data.toString();
   });
@@ -77,21 +83,20 @@ var pandocRenderer = function(data, options, callback){
   pandoc.stdin.write(src, 'utf8');
 
   pandoc.on('close', function (code, signal) {
-    var msg = '';
-    if (code !== 0)
-      msg += 'pandoc exited with code '+code+(error ? ': ' : '.');
-    // remove these two harmless warning messages
-    // to prevent program from crashing
-    error = error.replace(
-      "[WARNING] This document format requires a nonempty <title> element.\r\n  Please specify either 'title' or 'pagetitle' in the metadata.\r\n  Falling back to 'Untitled'\r\n"
-    ,'');
-    error = error.replace(
-      "[WARNING] This document format requires a nonempty <title> element.\r\n  Please specify either 'title' or 'pagetitle' in the metadata,\r\n  e.g. by using --metadata pagetitle=\"...\" on the command line.\r\n  Falling back to 'Untitled'\r\n"
-    ,'')
-    if (error)
-      msg += error;
-    if (msg)
-      return callback(new Error(msg));
+    // non-zero return code indicates error.
+    if (code !== 0) {
+      var error_msg = '\n'
+        + '[ERROR][hexo-renderer-pandoc] On ' + data.path + '\n'
+        + '[ERROR][hexo-renderer-pandoc] pandoc exited with code '+code+(error ? ': ' + error : '.');
+      return callback(new Error(error_msg));
+    }
+    // otherwise, print warnings and proceed.
+    if (error) {
+      var warn_msg = ''
+        + '[WARNING][hexo-renderer-pandoc] On ' + data.path + '\n'
+        + '[WARNING][hexo-renderer-pandoc] ' + error;
+      console.log(warn_msg);
+    }
     else{
       if (result === '') console.log("The next file error: ");
       callback(null, result);
