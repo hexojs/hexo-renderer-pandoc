@@ -119,4 +119,4 @@ Then, the args of pandoc is this: `[..., "--katex", ...]` .
 
 I'd like to thank [John MacFarlane](http://johnmacfarlane.net/) for creating Pandoc and [John Gruber](http://daringfireball.net/) for developing Markdown. Also, this work is based on @pvorb ([Paul Vorbach](https://github.com/pvorb/)) 's [node-pdc](https://github.com/pvorb/node-pdc) wrapper for pandoc.
 
-Special credit for @RichardYan314 as a good maintainer for this project!
+Special credit for [@RichardYan314](https://github.com/RichardYan314) as a good maintainer for this project!
