@@ -110,10 +110,10 @@ var pandocRenderer = function(data, options, callback){
 // uncomment this if using nunjucks 
 // pandocRenderer.disableNunjucks = true;
 
-hexo.extend.renderer.register('md', 'html', pandocRenderer);
-hexo.extend.renderer.register('markdown', 'html', pandocRenderer);
-hexo.extend.renderer.register('mkd', 'html', pandocRenderer);
-hexo.extend.renderer.register('mkdn', 'html', pandocRenderer);
-hexo.extend.renderer.register('mdwn', 'html', pandocRenderer);
-hexo.extend.renderer.register('mdtxt', 'html', pandocRenderer);
-hexo.extend.renderer.register('mdtext', 'html', pandocRenderer);
+hexo.extend.renderer.register('md', 'html', pandocRenderer, true);
+hexo.extend.renderer.register('markdown', 'html', pandocRenderer, true);
+hexo.extend.renderer.register('mkd', 'html', pandocRenderer, true);
+hexo.extend.renderer.register('mkdn', 'html', pandocRenderer, true);
+hexo.extend.renderer.register('mdwn', 'html', pandocRenderer, true);
+hexo.extend.renderer.register('mdtxt', 'html', pandocRenderer, true);
+hexo.extend.renderer.register('mdtext', 'html', pandocRenderer, true);
