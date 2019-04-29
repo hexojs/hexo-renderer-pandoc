@@ -164,7 +164,7 @@ For example, the following is illegal.
 {% endtag%}
 ```
 
-The following is illegal, as all three definitions are in different scopes.
+The following is legal, as all three definitions are in different scopes.
 
 ```
 {% tag %}
