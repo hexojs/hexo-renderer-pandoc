@@ -1,6 +1,6 @@
 {
   "name": "hexo-renderer-pandoc",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "main": "index",
   "author": {
     "name": "Joseph Pan",

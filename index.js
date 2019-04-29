@@ -1,6 +1,6 @@
-var spawn = require('child_process').spawn;
+var spawnSync = require('child_process').spawnSync;
 
-var pandocRenderer = function(data, options, callback){
+var pandocRenderer = function(data, options){
   var config = hexo.config.pandoc;
   var extensions = '', filters = [], extra = [];
   // To satisfy pandoc's requirement that html5 must have a title.
@@ -59,56 +59,63 @@ var pandocRenderer = function(data, options, callback){
   .concat(filters)
   .concat(extra)
   .concat(meta);
-  
-  if(config && config.template) args.push("--template=" + config.template);
+
+
+  // if we are rendering a post,
+  // `data` has the key `path`
+  // https://github.com/hexojs/hexo/blob/2ed17cd105768df379dad8bbbe4df30964fe8f2d/lib/hexo/post.js#L269
+  // otherwise (e.g., rendering a tag),
+  // `path` is not present in `data`.
+  // https://github.com/hexojs/hexo/blob/2ed17cd105768df379dad8bbbe4df30964fe8f2d/lib/extend/tag.js#L173
+  // https://github.com/hexojs/hexo/blob/a6dc0ea28dddad1b5f1bad7c6f86f1e0627b564a/lib/plugins/tag/blockquote.js#L64
+
+  // are we rendering a standalone post?
+  if("path" in data) {
+    // only apply template when rendering post, not tags
+    if (config && config.template) {
+      args.push("--template=" + config.template);
+    }
+
+    // do not apply `--standalone`,
+    // header/footer are to be added by Hexo
+
+    // also set a metavariable to let concerned
+    // pandoc filters know
+    args.push(...["-M", "standalone=True"]);
+  }
+  // or some thing to be embedded in a post,
+  // like tags?
+  else {
+    args.push(...["-M", "standalone=False"]);
+  }
 
   var src = data.text.toString();
 
-  var pandoc = spawn('pandoc', args);
-
-  var result = '';
-  var error = '';
-
-  pandoc.stdout.setEncoding('utf8');
-
-  pandoc.stdout.on('data', function (data) {
-    result += data.toString();
+  var res = spawnSync('pandoc', args, {
+    cwd: process.cwd(),
+    env: process.env,
+    encoding: "utf8",
+    input: src
   });
 
-  // stderr reads both warnings and errors
-  pandoc.stderr.on('data', function (data) {
-    error += data.toString();
-  });
-
-  pandoc.stdin.write(src, 'utf8');
-
-  pandoc.on('close', function (code, signal) {
-    // non-zero return code indicates error.
-    if (code !== 0) {
-      var error_msg = '\n'
-        + '[ERROR][hexo-renderer-pandoc] On ' + data.path + '\n'
-        + '[ERROR][hexo-renderer-pandoc] pandoc exited with code '+code+(error ? ': ' + error : '.');
-      return callback(new Error(error_msg));
-    }
-    // otherwise, print warnings and proceed.
-    if (error) {
+  if (res.status == 0) {
+    if (res.stderr) {
       var warn_msg = ''
         + '[WARNING][hexo-renderer-pandoc] On ' + data.path + '\n'
-        + '[WARNING][hexo-renderer-pandoc] ' + error;
+        + '[WARNING][hexo-renderer-pandoc] ' + res.stderr;
       console.log(warn_msg);
     }
-    else{
-      if (result === '') console.log("The next file error: ");
-      callback(null, result);
-    }
-  });
 
-    pandoc.stdin.end();
-
+    return res.stdout;
+  } else {
+    var error_msg = '\n'
+      + '[ERROR][hexo-renderer-pandoc] On ' + data.path + '\n'
+      + '[ERROR][hexo-renderer-pandoc] pandoc exited with code '+res.status+(res.stderr ? ': ' + res.stderr : '.');
+    throw Error(error_msg);
+    console.log(error_msg);
+    return null;
+  }
 }
-
-// uncomment this if using nunjucks 
-// pandocRenderer.disableNunjucks = true;
 
 hexo.extend.renderer.register('md', 'html', pandocRenderer, true);
 hexo.extend.renderer.register('markdown', 'html', pandocRenderer, true);
