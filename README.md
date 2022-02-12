@@ -18,6 +18,17 @@ This will install hexo-renderer-pandoc.
 
 ## Customization ##
 
+By default, this plugin issues command `pandoc` to invoke pandoc. If your pandoc executable is not in your search path environment variable, you can override this command through `_config.yml`.
+
+``` yml
+pandoc:
+  pandoc_path: C:/Program Files/Pandoc/pandoc.exe
+```
+
+Using absolute path is recommended.
+
+The path depends on your operation system. So even if you are using the git-bash shell on Windows, you need the Windows path like the one in the example.
+
 hexo-renderer-pandoc can not only render markdown, but also supports textile, reStructedText and many other formats, due to the strong capability of pandoc.
 
 By default, it only renders Pandoc-markdown. But if you want to make it be a textile renderer instead of a markdown renderer, simply modify the args from the index.js as:

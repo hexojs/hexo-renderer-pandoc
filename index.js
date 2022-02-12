@@ -2,6 +2,7 @@ var spawnSync = require('child_process').spawnSync;
 
 var pandocRenderer = function(data, options){
   var config = hexo.config.pandoc;
+  var pandoc_path = 'pandoc';
   var extensions = '', filters = [], extra = [];
   // To satisfy pandoc's requirement that html5 must have a title.
   // Since the markdown file is only rendered as body part,
@@ -10,6 +11,10 @@ var pandocRenderer = function(data, options){
   var math = '--mathjax';
 
   if(config) {
+    if (config.pandoc_path) {
+      pandoc_path = config.pandoc_path;
+    }
+    
     if(config.extensions) {
       config.extensions.forEach(function(extension) {
         extensions += extension;
@@ -91,7 +96,7 @@ var pandocRenderer = function(data, options){
 
   var src = data.text.toString();
 
-  var res = spawnSync('pandoc', args, {
+  var res = spawnSync(pandoc_path, args, {
     cwd: process.cwd(),
     env: process.env,
     encoding: "utf8",
