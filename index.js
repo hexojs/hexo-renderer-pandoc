@@ -60,7 +60,7 @@ var pandocRenderer = function(data, options){
     }
   }
 
-  var args = [ '-f', 'markdown-smart'+extensions, '-t', 'html-smart', math]
+  var args = [ '-f', 'markdown-smart'+extensions, '-t', 'html-smart', math, "--wrap=none"]
   .concat(filters)
   .concat(extra)
   .concat(meta);
