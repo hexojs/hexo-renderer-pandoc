@@ -47,6 +47,7 @@ You can pass additional arguments to pandoc through `_config.yml`. The default c
 
 ```yml
 pandoc:
+  extensions:
   filters:
   extra:
   template:
@@ -54,6 +55,7 @@ pandoc:
   mathEngine:
 ```
 
+* `extensions` is a list of [markdown extensions](https://pandoc.org/MANUAL.html#extensions)
 * `filters` is a list of any pandoc filter installed on your path.
 * `extra` is a list of mappings:
 
