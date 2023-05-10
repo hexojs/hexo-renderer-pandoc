@@ -1,9 +1,9 @@
 hexo-renderer-pandoc
 
 [![npm](https://img.shields.io/npm/v/hexo-renderer-pandoc.svg)](https://www.npmjs.com/package/hexo-renderer-pandoc)
-[![npm](https://img.shields.io/npm/dm/hexo-renderer-pandoc.svg)](http://github.com/wzpan/hexo-renderer-pandoc)
+[![npm](https://img.shields.io/npm/dm/hexo-renderer-pandoc.svg)](http://github.com/hexojs/hexo-renderer-pandoc)
 
-Yet another markdown renderer plugin for [Hexo](http://zespia.tw/hexo). It can converts [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML. If you want, it can also be a renderer for [textile](http://redcloth.org/textile), [reStructedText](http://docutils.sourceforge.net/rst.html), *etc*. 
+Yet another markdown renderer plugin for [Hexo](https://hexo.io/). It can convert [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML. If you want, it can also be a renderer for [textile](http://redcloth.org/textile), [reStructedText](http://docutils.sourceforge.net/rst.html), *etc*. 
 
 ## Installation ##
 
@@ -18,104 +18,63 @@ This will install hexo-renderer-pandoc.
 
 ## Customization ##
 
-hexo-renderer-pandoc can not only render markdown, but also supports textile, reStructedText and many other formats, due to the strong capability of pandoc.
-
-By default, it only renders Pandoc-markdown. But if you want to make it be a textile renderer instead of a markdown renderer, simply modify the args from the index.js as:
-
-``` javascript
-var args = [ '-f', 'textile', '-t', 'html', '--mathjax', '--smart'];
-```
-
-and change the register line as:
-
-``` javascript
-hexo.extend.renderer.register('textile', 'html', pandoc);
-```
-
-You can pass additional arguments to pandoc through `_config.yml`. The default configuration is:
+You can pass arguments to pandoc through `_config.yml` as an array:
 
 ```yml
 pandoc:
-  filters:
-  extra:
-  template:
-  meta:
-  mathEngine:
+  args:
+    - arg1
+    - arg2
+    - arg3
 ```
 
-* `filters` is a list of any pandoc filter installed on your path.
-* `extra` is a list of mappings:
-
-```yml
-extra:
-  - key: value
-```
-passed to pandoc as `--key value`.
-
-* `template` is a template file you wish to use when pandoc generates your posts:
-
-``` yml
-template: dir/.../template.html
-```
-
-will be passed to pandoc as `--template=dir/../template.html`
-
-The path of the template should be relative to the root of your blog.
-
-For example, the very simple template
-
-``` html
-$if(toc)$
-<div id="$idprefix$TOC">
-$toc$
-</div>
-$endif$
-$body$
-```
-
-prepends table of contents to all your posts if variable `--toc` is also passed. To enable TOC, add to your `_config.yml`:
-
-``` yml
-pandoc:
-  # other options
-  extra:
-    - toc: # will be passed as `--toc`. Note the colon
-  template: dir/../template.html
-```
-
-* `meta` is a list of anything you wish to be sent to pandoc as meta:
-
-```yml
-meta:
-  - key: value1
-  - value2
-```
-would be passed as `-M key=value1 -M value2`.
-
-`pandoc-citeproc` for example can be configured as:
+or in another style:
 
 ```yml
 pandoc:
-  filters:
-    - pandoc-citeproc
-  extra:
-    - bibliography: "/path/to/bibfile.bib"
-  meta:
-    - suppress-bibliography
+  args: [arg1, arg2, arg3]
 ```
 
-* `mathEngine` is an option for choosing math engine. By default, mathEngine is mathjax.
+You may need to quote each argument with quotation marks according to YAML syntax specification.
+If in doubt, quote all arguments.
 
-For example, if you want to use KaTeX, you can pass `katex` to the mathEngine option:
+Note:
+a Pandoc key-value arguments `--key value` need to be separated as two arguments
 
-```
+```yml
 pandoc:
-  mathEngine: katex
+  args: [..., "-key", "value", ...]
 ```
 
-Then, the args of pandoc is this: `[..., "--katex", ...]` .
+A minimal working example that render HTML from markdown:
 
-## Issues related to Hexo Tags ##
+```yml
+pandoc:
+  args:
+    - '-f'
+    - 'markdown'
+    - '-t'
+    - 'html'
+    - '--mathjax'
+```
+
+The extension automatically adds the following arguments:
+
+```yml
+['-M', 'pagetitle=dummy', <arguments you specified>, "-M", "standalone=[True|False]"] 
+```
+
+where `pagetitle` specifies a dummy title to make Pandoc happy;
+the actual title is handled by Hexo.
+And see the next section on Hexo Tags for the meaning of the `standalone` value.
+
+There exists another interface
+for specifying arguments prior to version v4.0.
+See [here](old.md) for the old documentation on its behaviour.
+The interface is preserved for backward compatibility
+but will not be supported due to its lack of flexibility.
+
+## Issues related to Hexo Tags ##_
 
 There are issues related to Hexo tags. If you are using them, this section may be at your concern.
 
@@ -184,7 +143,7 @@ The following is legal, as all three definitions are in different scopes.
 
 #### Pandoc Filters ####
 
-we passed the argument `-M standalone=[True|False]` to Pandoc. If a Pandoc Filter desires to know whether it is applied on an standalone post, it can check the metavariable `standalone`.
+we passed the argument `-M standalone=[True|False]` to Pandoc. If a Pandoc Filter desires to know whether it is applied to a standalone post, it can check the metavariable `standalone`.
 
 As an example, when using Panflute, this metavariable can be accessed by
 
@@ -198,4 +157,4 @@ We recommend to assume rendering standalone post when this metavariable is not s
 
 I'd like to thank [John MacFarlane](http://johnmacfarlane.net/) for creating Pandoc and [John Gruber](http://daringfireball.net/) for developing Markdown. Also, this work is based on @pvorb ([Paul Vorbach](https://github.com/pvorb/)) 's [node-pdc](https://github.com/pvorb/node-pdc) wrapper for pandoc.
 
-Special credit for [@RichardYan314](https://github.com/RichardYan314) as a good maintainer for this project!
+Special credit for [@Ritsuka314](https://github.com/Ritsuka314) as a good maintainer for this project!

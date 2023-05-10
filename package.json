@@ -1,12 +1,23 @@
 {
   "name": "hexo-renderer-pandoc",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "index",
   "author": {
     "name": "Joseph Pan",
     "email": "cs.wzpan@gmail.com",
     "url": "http://hahack.com/"
   },
+  "scripts": {
+    "test": "mocha",
+    "test-cov": "nyc mocha --timeout=3000"
+  },
+  "contributers": [
+    {
+      "name": "K. Ritsuka",
+      "email": "Ritsuka314@outlook.com",
+      "url": "https://Ritsuka.moe/"
+    }
+  ],
   "tags": [
     "pandoc",
     "markdown",
@@ -14,13 +25,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/wzpan/hexo-renderer-pandoc.git"
+    "url": "git://github.com/hexojs/hexo-renderer-pandoc/.git"
   },
   "bugs": {
-    "url": "http://github.com/wzpan/hexo-renderer-pandoc/issues"
+    "url": "http://github.com/hexojs/hexo-renderer-pandoc/issues"
   },
-  "dependencies": {},
   "readmeFilename": "README.md",
   "description": "hexo-renderer-pandoc",
-  "homepage": "https://github.com/wzpan/hexo-renderer-pandoc"  
+  "homepage": "https://github.com/hexojs/hexo-renderer-pandoc",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
+  }
 }
