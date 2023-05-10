@@ -18,6 +18,17 @@ This will install hexo-renderer-pandoc.
 
 ## Customization ##
 
+By default, this plugin issues command `pandoc` to invoke pandoc. If your pandoc executable is not in your search path environment variable, you can override this command through `_config.yml`.
+
+``` yml
+pandoc:
+  pandoc_path: C:/Program Files/Pandoc/pandoc.exe
+```
+
+Using absolute path is recommended.
+
+The path depends on your operating system. So even if you are using the git-bash shell on Windows, you need the Windows path like the one in the example.
+
 You can pass arguments to pandoc through `_config.yml` as an array:
 
 ```yml
