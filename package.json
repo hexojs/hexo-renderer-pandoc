@@ -8,8 +8,11 @@
     "url": "http://hahack.com/"
   },
   "scripts": {
+    "lint": "eslint lib test",
+    "lint:fix": "eslint lib test --fix",
     "test": "mocha",
-    "test-cov": "c8 -r=lcov mocha "
+    "test-cov": "c8 -r=lcovonly mocha",
+    "test-covv": "c8 -r=html -r=text mocha"
   },
   "contributers": [
     {
@@ -21,21 +24,24 @@
   "tags": [
     "pandoc",
     "markdown",
+    "plugin",
+    "renderer",
     "hexo"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/hexojs/hexo-renderer-pandoc/.git"
+    "url": "https://github.com/hexojs/hexo-renderer-pandoc/.git"
   },
   "bugs": {
-    "url": "http://github.com/hexojs/hexo-renderer-pandoc/issues"
+    "url": "https://github.com/hexojs/hexo-renderer-pandoc/issues"
   },
-  "readmeFilename": "README.md",
-  "description": "hexo-renderer-pandoc",
+  "description": "A pandoc-markdown-flavor renderer for hexo. ",
   "homepage": "https://github.com/hexojs/hexo-renderer-pandoc",
   "devDependencies": {
     "c8": "^8.0.1",
     "chai": "^4.3.8",
+    "eslint": "^8.48.0",
+    "eslint-config-hexo": "^5.0.0",
     "mocha": "^10.2.0"
   }
 }
