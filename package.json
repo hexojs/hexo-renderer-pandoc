@@ -1,18 +1,37 @@
 {
   "name": "hexo-renderer-pandoc",
   "version": "0.4.0",
-  "main": "index",
+  "description": "A pandoc-markdown-flavor renderer for hexo. ",
+  "homepage": "https://github.com/hexojs/hexo-renderer-pandoc",
+  "bugs": {
+    "url": "https://github.com/hexojs/hexo-renderer-pandoc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexojs/hexo-renderer-pandoc/.git"
+  },
   "author": {
     "name": "Joseph Pan",
     "email": "cs.wzpan@gmail.com",
     "url": "http://hahack.com/"
   },
+  "main": "index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "lint": "eslint lib test",
     "lint:fix": "eslint lib test --fix",
     "test": "mocha",
     "test-cov": "c8 -r=lcovonly mocha",
     "test-covv": "c8 -r=html -r=text mocha"
+  },
+  "devDependencies": {
+    "c8": "^8.0.1",
+    "chai": "^4.3.8",
+    "eslint": "^8.48.0",
+    "eslint-config-hexo": "^5.0.0",
+    "mocha": "^10.2.0"
   },
   "contributers": [
     {
@@ -27,21 +46,5 @@
     "plugin",
     "renderer",
     "hexo"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hexojs/hexo-renderer-pandoc/.git"
-  },
-  "bugs": {
-    "url": "https://github.com/hexojs/hexo-renderer-pandoc/issues"
-  },
-  "description": "A pandoc-markdown-flavor renderer for hexo. ",
-  "homepage": "https://github.com/hexojs/hexo-renderer-pandoc",
-  "devDependencies": {
-    "c8": "^8.0.1",
-    "chai": "^4.3.8",
-    "eslint": "^8.48.0",
-    "eslint-config-hexo": "^5.0.0",
-    "mocha": "^10.2.0"
-  }
+  ]
 }
