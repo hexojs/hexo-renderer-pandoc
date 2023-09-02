@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "extends": ["hexo"],
+  "overrides": [
+    {
+      "files": ["test/**"],
+      "extends": ["hexo", "hexo/test"]
+    }
+  ],
+  "rules": {
+    "linebreak-style": ["error", "unix"]
+  }
+}
