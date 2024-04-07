@@ -97,7 +97,7 @@ We welcome adding your Pandoc filters to this section! We encourage developing f
 
 - (lua) [header link](https://github.com/moon-jam/hexo-renderer-pandoc_header-link-filter) (@moon-jam)
 
-    This filter add links to headers as `hexo-renderer-marked` does. Many themes depend on this behavior to show the anchor icon. #59
+    This filter add links to headers as `hexo-renderer-marked` does. Many themes depend on this behavior to show the anchor icon. [see issue #59](https://github.com/hexojs/hexo-renderer-pandoc/issues/59)
 
 
 ## Issues related to Hexo Tags ##\_
