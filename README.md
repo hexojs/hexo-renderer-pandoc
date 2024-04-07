@@ -91,6 +91,15 @@ See [here](old.md) for the old documentation on its behaviour.
 The interface is preserved for backward compatibility
 but will not be supported due to its lack of flexibility.
 
+## Pandoc Filters
+
+We welcome adding your Pandoc filters to this section! We encourage developing filters in Lua as they can be executed by Pandoc (v 5.4) directly without the need of setting up external interpreter and libraries. See [Pandoc Lua Filters](https://pandoc.org/lua-filters.html)
+
+- (lua) [header link](https://github.com/moon-jam/hexo-renderer-pandoc_header-link-filter) (@moon-jam)
+
+    This filter add links to headers as `hexo-renderer-marked` does. Many themes depend on this behavior to show the anchor icon. #59
+
+
 ## Issues related to Hexo Tags ##\_
 
 There are issues related to Hexo tags. If you are using them, this section may be at your concern.
