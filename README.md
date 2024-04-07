@@ -166,7 +166,7 @@ The following is legal, as all three definitions are in different scopes.
 {% endtag%}
 ```
 
-#### Standalone Value in Pandoc Filters
+#### The `standalone` value in Pandoc Filters
 
 we passed the argument `-M standalone=[True|False]` to Pandoc. If a Pandoc Filter desires to know whether it is applied to a standalone post, it can check the metavariable `standalone`.
 
