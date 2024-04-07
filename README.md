@@ -83,7 +83,7 @@ The extension automatically adds the following arguments:
 
 where `pagetitle` specifies a dummy title to make Pandoc happy;
 the actual title is handled by Hexo.
-And see the next section on Hexo Tags for the meaning of the `standalone` value.
+And see the [Standalone Value in Pandoc Filters](#standalone-value-in-pandoc-filters) section for the meaning of the `standalone` value.
 
 There exists another interface
 for specifying arguments prior to version v4.0.
@@ -91,14 +91,13 @@ See [here](old.md) for the old documentation on its behaviour.
 The interface is preserved for backward compatibility
 but will not be supported due to its lack of flexibility.
 
-## Pandoc Filters
+## Using Pandoc Filters
 
 We welcome adding your Pandoc filters to this section! We encourage developing filters in Lua as they can be executed by Pandoc (v 5.4) directly without the need of setting up external interpreter and libraries. See [Pandoc Lua Filters](https://pandoc.org/lua-filters.html)
 
-- (lua) [header link](https://github.com/moon-jam/hexo-renderer-pandoc_header-link-filter) (@moon-jam)
+- (lua) [header link](https://github.com/moon-jam/hexo-renderer-pandoc_header-link-filter) ([@moon-jam](https://github.com/moon-jam))
 
     This filter add links to headers as `hexo-renderer-marked` does. Many themes depend on this behavior to show the anchor icon. [see issue #59](https://github.com/hexojs/hexo-renderer-pandoc/issues/59)
-
 
 ## Issues related to Hexo Tags ##\_
 
@@ -167,7 +166,7 @@ The following is legal, as all three definitions are in different scopes.
 {% endtag%}
 ```
 
-#### Pandoc Filters
+#### Standalone Value in Pandoc Filters
 
 we passed the argument `-M standalone=[True|False]` to Pandoc. If a Pandoc Filter desires to know whether it is applied to a standalone post, it can check the metavariable `standalone`.
 
