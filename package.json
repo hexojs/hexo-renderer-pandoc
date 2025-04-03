@@ -1,6 +1,6 @@
 {
   "name": "hexo-renderer-pandoc",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A pandoc-markdown-flavor renderer for hexo. ",
   "homepage": "https://github.com/hexojs/hexo-renderer-pandoc",
   "bugs": {
@@ -38,6 +38,11 @@
       "name": "K. Ritsuka",
       "email": "Ritsuka314@outlook.com",
       "url": "https://Ritsuka.moe/"
+    }, 
+    {
+      "name": "Uiolee",
+      "email": "public (at) uiolee (dot) com",
+      "url": "https://github.com/uiolee/"
     }
   ],
   "tags": [
