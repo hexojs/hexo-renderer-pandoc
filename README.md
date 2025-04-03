@@ -104,7 +104,7 @@ The extension automatically adds the following arguments:
 
 where `pagetitle` specifies a dummy title to make Pandoc happy;
 the actual title is handled by Hexo.
-And see the next section on Hexo Tags for the meaning of the `standalone` value.
+And see the [Standalone Value in Pandoc Filters](#standalone-value-in-pandoc-filters) section for the meaning of the `standalone` value.
 
 ## Issues related to Hexo Tags
 
