@@ -1,35 +1,66 @@
 # hexo-renderer-pandoc
 
-[![npm](https://img.shields.io/npm/v/hexo-renderer-pandoc.svg)](https://www.npmjs.com/package/hexo-renderer-pandoc)
-[![npm](https://img.shields.io/npm/dm/hexo-renderer-pandoc.svg)](http://github.com/hexojs/hexo-renderer-pandoc)
+[![npm](https://img.shields.io/npm/v/hexo-renderer-pandoc)](https://www.npmjs.com/package/hexo-renderer-pandoc)
+[![npm](https://img.shields.io/npm/dm/hexo-renderer-pandoc)](https://www.npmjs.com/package/hexo-renderer-pandoc)
+[![Coveralls](https://img.shields.io/coverallsCoverage/github/hexojs/hexo-renderer-pandoc?branch=master)](https://coveralls.io/github/hexojs/hexo-renderer-pandoc?branch=master)
+[![tester](https://img.shields.io/github/actions/workflow/status/hexojs/hexo-renderer-pandoc/tester.yml?label=tester)](https://github.com/hexojs/hexo-renderer-pandoc/actions/workflows/tester.yml)
 
 Yet another markdown renderer plugin for [Hexo](https://hexo.io/). It can convert [Pandoc's markdown](http://johnmacfarlane.net/pandoc/) to HTML. If you want, it can also be a renderer for [textile](http://redcloth.org/textile), [reStructedText](http://docutils.sourceforge.net/rst.html), _etc_.
 
 ## Installation
 
-1. Firstly, make sure you have [installed](http://johnmacfarlane.net/pandoc/installing.html) pandoc (version >= 2.0).
-2. Secondly, `cd` into your hexo root folder and execute the following command:
+Maybe you are using [`hexo-renderer-marked`](https://github.com/hexojs/hexo-renderer-marked) or [`hexo-renderer-markdown-it`](https://github.com/hexojs/hexo-renderer-markdown-it), you will have to remove them if you want to use [`hexo-renderer-pandoc`](https://github.com/hexojs/hexo-renderer-pandoc).
+
+```sh
+npm uninstall hexo-renderer-marked --save
+npm uninstall hexo-renderer-markdown-it --save
+```
+
+1. Make sure you have [installed](http://johnmacfarlane.net/pandoc/installing.html) pandoc (version >= 2.0).
+2. `cd` into your hexo root folder and execute the following command:
 
 ```bash
-$ npm install hexo-renderer-pandoc --save
+npm install hexo-renderer-pandoc --save
 ```
 
 This will install hexo-renderer-pandoc.
 
 ## Customization
 
-By default, this plugin issues command `pandoc` to invoke pandoc. If your pandoc executable is not in your search path environment variable, you can override this command through `_config.yml`.
+### Default Configuration
 
 ```yml
 pandoc:
-  pandoc_path: C:/Program Files/Pandoc/pandoc.exe
+  pandocPath: 'pandoc'
+  timeout: 1000
+  args: []
+```
+
+By default, this plugin issues command `pandoc` to invoke pandoc. If your pandoc executable is not in your search path environment variable, you can override this command through `_config.yml`.
+
+#### pandocPath
+
+```yml
+pandoc:
+  pandocPath: C:/Program Files/Pandoc/pandoc.exe
 ```
 
 Using absolute path is recommended.
 
 The path depends on your operating system. So even if you are using the git-bash shell on Windows, you need the Windows path like the one in the example.
 
-You can pass arguments to pandoc through `_config.yml` as an array:
+#### timeout
+
+```yml
+pandoc:
+  timeout: 1000
+```
+
+Specify the maximum runnable time(ms) of pandoc
+
+#### args
+
+You can pass arguments to pandoc as an array:
 
 ```yml
 pandoc:
@@ -57,17 +88,7 @@ pandoc:
   args: [..., "-key", "value", ...]
 ```
 
-A minimal working example that render HTML from markdown:
-
-```yml
-pandoc:
-  args:
-    - "-f"
-    - "markdown"
-    - "-t"
-    - "html"
-    - "--mathjax"
-```
+### Internal Configuration
 
 The extension automatically adds the following arguments:
 
@@ -85,21 +106,7 @@ where `pagetitle` specifies a dummy title to make Pandoc happy;
 the actual title is handled by Hexo.
 And see the [Standalone Value in Pandoc Filters](#standalone-value-in-pandoc-filters) section for the meaning of the `standalone` value.
 
-There exists another interface
-for specifying arguments prior to version v4.0.
-See [here](old.md) for the old documentation on its behaviour.
-The interface is preserved for backward compatibility
-but will not be supported due to its lack of flexibility.
-
-## Using Pandoc Filters
-
-We welcome adding your Pandoc filters to this section! We encourage developing filters in Lua as they can be executed by Pandoc (v 5.4) directly without the need of setting up external interpreter and libraries. See [Pandoc Lua Filters](https://pandoc.org/lua-filters.html)
-
-- (lua) [header link](https://github.com/moon-jam/hexo-renderer-pandoc_header-link-filter) ([@moon-jam](https://github.com/moon-jam))
-
-    This filter add links to headers as `hexo-renderer-marked` does. Many themes depend on this behavior to show the anchor icon. [see issue #59](https://github.com/hexojs/hexo-renderer-pandoc/issues/59)
-
-## Issues related to Hexo Tags ##\_
+## Issues related to Hexo Tags
 
 There are issues related to Hexo tags. If you are using them, this section may be at your concern.
 
@@ -166,7 +173,7 @@ The following is legal, as all three definitions are in different scopes.
 {% endtag%}
 ```
 
-#### The `standalone` value in Pandoc Filters
+#### Pandoc Filters
 
 we passed the argument `-M standalone=[True|False]` to Pandoc. If a Pandoc Filter desires to know whether it is applied to a standalone post, it can check the metavariable `standalone`.
 
