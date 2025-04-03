@@ -1,6 +1,6 @@
 'use strict';
 
-const { should } = require("chai"); // eslint-disable-line
+const { should } = require('chai');
 should();
 
 const stripEOL = str => {
@@ -47,7 +47,6 @@ describe('renderer', () => {
     ctx.config.pandoc.args = ['--forgaefmat', 'wrongfsafaForgmat'];
     try {
       pandocRenderer.bind(ctx)(data, options);
-    // eslint-disable-next-line node/no-unsupported-features/es-syntax
     } catch (error) {
     }
   });
