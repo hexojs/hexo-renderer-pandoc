@@ -37,7 +37,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          architecture: 'x64'
 
       - name: Install pandoc
         env:
