@@ -6,7 +6,10 @@
   "bugs": {
     "url": "https://github.com/hexojs/hexo-renderer-pandoc/issues"
   },
-  "repository": "github:hexojs/hexo-renderer-pandoc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexojs/hexo-renderer-pandoc.git"
+  },
   "author": {
     "name": "Joseph Pan",
     "email": "cs.wzpan@gmail.com",
