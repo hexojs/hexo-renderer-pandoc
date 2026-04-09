@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hexojs/hexo-renderer-pandoc/.git"
+    "url": "https://github.com/hexojs/hexo-renderer-pandoc.git"
   },
   "author": {
     "name": "Joseph Pan",
