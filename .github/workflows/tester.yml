@@ -32,9 +32,9 @@ jobs:
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -48,7 +48,7 @@ jobs:
         shell: bash
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v6
         id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
@@ -70,9 +70,9 @@ jobs:
         node-version: ["lts/*"]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -86,7 +86,7 @@ jobs:
         shell: bash
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v6
         id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
